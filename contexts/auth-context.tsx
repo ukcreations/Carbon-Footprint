@@ -18,12 +18,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in (from localStorage)
-    const savedUser = localStorage.getItem('carbon-user');
-    if (savedUser) {
-      setUser(savedUser);
-      setIsAuthenticated(true);
-    }
+    // No localStorage persistence - user must login on each browser session
     setIsLoading(false);
   }, []);
 
@@ -32,7 +27,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (username === 'sneha' && password === 'sneha@2208') {
       setUser(username);
       setIsAuthenticated(true);
-      localStorage.setItem('carbon-user', username);
+      // No localStorage persistence - session only
       return true;
     }
     return false;
@@ -41,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem('carbon-user');
+    // No localStorage to clear - session only
   };
 
   return (
