@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* Carbon Footprint Theme - Dark Green & Charcoal */
+    --background: 160 25% 8%;
+    --foreground: 0 0% 95%;
+    --card: 160 20% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 160 20% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 160 60% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 160 60% 35%;
+    --muted: 0 0% 30%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 160 60% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 160 20% 25%;
+    --input: 160 20% 18%;
+    --ring: 160 60% 35%;
+    --chart-1: 160 60% 40%;
+    --chart-2: 160 80% 50%;
+    --chart-3: 0 84.2% 60.2%;
+    --chart-4: 45 93% 62%;
+    --chart-5: 30 80% 55%;
+    --radius: 0.5rem;
+    --sidebar-background: 160 25% 12%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 160 60% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 50% 30%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 160 20% 25%;
+    --sidebar-ring: 160 60% 35%;
+  }
+  .dark {
+    --background: 160 25% 8%;
+    --foreground: 0 0% 95%;
+    --card: 160 20% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 160 20% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 160 60% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 160 60% 35%;
+    --muted: 0 0% 30%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 160 60% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 160 20% 25%;
+    --input: 160 20% 18%;
+    --ring: 160 60% 35%;
+    --chart-1: 160 60% 40%;
+    --chart-2: 160 80% 50%;
+    --chart-3: 0 84.2% 60.2%;
+    --chart-4: 45 93% 62%;
+    --chart-5: 30 80% 55%;
+    --sidebar-background: 160 25% 12%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 160 60% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 50% 30%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 160 20% 25%;
+    --sidebar-ring: 160 60% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    position: relative;
+    overflow-x: hidden;
+  }
+}
+
+/* Animated Background Elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    box-shadow: 0 0 20px hsl(160, 60%, 35%, 0.3);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 40px hsl(160, 60%, 35%, 0.5);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(0) translateY(-20px);
+  }
+  75% {
+    transform: translateX(-20px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes rotate-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scale-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Background animation utility classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 8s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-gradient {
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-wave {
+  animation: wave 8s linear infinite;
+}
+
+.animate-scale-pulse {
+  animation: scale-pulse 3s ease-in-out infinite;
+}
+
+.animate-fade {
+  animation: fade-in-out 4s ease-in-out infinite;
+}
+
+/* Login Success Animation */
+@keyframes success-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 20px hsl(160, 60%, 35%, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px hsl(160, 60%, 35%, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px hsl(160, 60%, 35%, 0.3);
+  }
+}
+
+/* Login Error Animation */
+@keyframes error-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-success {
+  animation: success-pulse 1s ease-in-out;
+  border-color: hsl(160, 60%, 45%) !important;
+}
+
+.animate-error {
+  animation: error-shake 0.5s ease-in-out;
+  border-color: hsl(0, 84.2%, 60.2%) !important;
+}
