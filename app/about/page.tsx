@@ -6,37 +6,40 @@ import { Code2, Award, Lightbulb } from 'lucide-react';
 export default function AboutPage() {
   const teamMembers = [
     {
-      name: 'Sneha',
-      role: 'Product Lead & UI/UX Designer',
-      description: 'Spearheading the platform design and user experience strategy, ensuring COUNT CARBON delivers an intuitive interface for mining operators.',
-      expertise: [
-        'Product strategy',
-        'User interface design',
-        'User experience optimization',
-        'Stakeholder management',
-      ],
-    },
-    {
       name: 'Ananya Srivastava',
-      role: 'Backend Engineer & ML Specialist',
-      description: 'Leading the development of robust backend infrastructure and advanced machine learning models for accurate emission predictions.',
+      role: 'Backend Engineer & UI/UX Designer',
+      description: 'Leading backend development and platform design, ensuring COUNT CARBON delivers robust infrastructure and intuitive interface for mining operators.',
       expertise: [
         'Python & Django',
-        'Machine learning algorithms',
         'Database architecture',
+        'User interface design',
         'API development',
       ],
+      isLeader: false,
+    },
+    {
+      name: 'Sneha',
+      role: 'Project Lead & ML Specialist',
+      description: 'Leading the entire COUNT CARBON project with vision and expertise in advanced machine learning models for accurate emission predictions and sustainable mining solutions.',
+      expertise: [
+        'Project Leadership',
+        'Machine learning algorithms',
+        'Data analysis',
+        'Strategic planning',
+      ],
+      isLeader: true,
     },
     {
       name: 'Shaik Rafi',
       role: 'Frontend Engineer & Full-Stack Developer',
-      description: 'Building the interactive dashboard and frontend components that bring real-time emission data to life for end-users.',
+      description: 'Building interactive dashboard and frontend components that bring real-time emission data to life for end-users.',
       expertise: [
         'React.js & Next.js',
         'Data visualization',
         'Frontend performance',
         'System integration',
       ],
+      isLeader: false,
     },
   ];
 
@@ -44,8 +47,8 @@ export default function AboutPage() {
     <div className="min-h-screen">
       <HeroSection
         title="About COUNT CARBON"
-        subtitle="SIH Idea Submission"
-        description="A innovative solution developed for the Smart India Hackathon, COUNT CARBON empowers coal mining industries to monitor, predict, and reduce their carbon footprint through advanced technology and data-driven insights."
+        subtitle="Carbon Emissions Management Platform"
+        description="COUNT CARBON empowers coal mining industries to monitor, predict, and reduce their carbon footprint through advanced technology and data-driven insights."
       />
 
       {/* Mission & Vision */}
@@ -95,83 +98,74 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {teamMembers.map((member, idx) => (
-              <div key={idx} className="rounded-lg border border-border bg-background p-8">
-                <div className="mb-6">
-                  <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <Code2 className="h-10 w-10 text-primary" />
+              <div 
+                key={idx} 
+                className={`rounded-lg border p-8 relative overflow-hidden transition-all duration-300 ${
+                  member.isLeader 
+                    ? 'border-primary shadow-lg shadow-primary/20 scale-105' 
+                    : 'border-border bg-background'
+                }`}
+                style={
+                  member.isLeader 
+                    ? {
+                        backgroundImage: 'url("/sneha_background.png")',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        position: 'relative'
+                      }
+                    : {}
+                }
+              >
+                {member.isLeader && (
+                  <div className="absolute inset-0 bg-green-900/30 backdrop-blur-sm"></div>
+                )}
+                {member.isLeader && (
+                  <div className="absolute top-2 right-2 px-2 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-full z-10">
+                    LEADER
                   </div>
-                  <h3 className="text-xl font-bold text-foreground text-center">{member.name}</h3>
-                  <p className="text-sm font-semibold text-primary text-center mt-1">
+                )}
+                
+                <div className={`mb-6 relative z-10 ${member.isLeader ? 'text-white' : ''}`}>
+                  <div className={`h-20 w-20 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                    member.isLeader 
+                      ? 'bg-gradient-to-br from-primary to-primary/80 shadow-lg shadow-primary/40 animate-pulse' 
+                      : 'bg-primary/10'
+                  }`}>
+                    <Code2 className={`h-10 w-10 ${member.isLeader ? 'text-primary-foreground' : 'text-primary'}`} />
+                  </div>
+                  <h3 className={`text-xl font-bold text-center ${member.isLeader ? 'text-white drop-shadow-lg' : 'text-foreground'}`}>
+                    {member.name}
+                  </h3>
+                  <p className={`text-sm font-semibold text-center mt-1 ${
+                    member.isLeader ? 'text-white/90 drop-shadow' : 'text-primary'
+                  }`}>
                     {member.role}
                   </p>
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-6 text-center">
+                <p className={`text-sm mb-6 text-center relative z-10 ${member.isLeader ? 'text-white/95 drop-shadow' : 'text-muted-foreground'}`}>
                   {member.description}
                 </p>
 
-                <div className="border-t border-border pt-6">
-                  <p className="text-xs font-semibold text-foreground mb-3 uppercase tracking-wide">
+                <div className={`border-t pt-6 relative z-10 ${member.isLeader ? 'border-white/20' : 'border-border'}`}>
+                  <p className={`text-xs font-semibold mb-3 uppercase tracking-wide ${member.isLeader ? 'text-white' : 'text-foreground'}`}>
                     Key Expertise
                   </p>
                   <div className="space-y-2">
                     {member.expertise.map((skill, skillIdx) => (
                       <div
                         key={skillIdx}
-                        className="inline-block px-3 py-1 rounded-full bg-primary/10 text-xs text-primary font-medium mr-2 mb-2"
+                        className={`inline-block px-3 py-1 rounded-full text-xs font-medium mr-2 mb-2 ${
+                          member.isLeader 
+                            ? 'bg-white/20 text-white border border-white/30 backdrop-blur-sm' 
+                            : 'bg-primary/10 text-primary'
+                        }`}
                       >
                         {skill}
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Journey Section */}
-      <section className="py-20 bg-background">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
-            Our Journey
-          </h2>
-
-          <div className="space-y-8">
-            {[
-              {
-                phase: 'Ideation',
-                description:
-                  'We identified a critical gap in carbon emissions monitoring for Indian coal mining industries. Existing solutions either lacked real-time capabilities or were prohibitively expensive. This inspired us to create COUNT CARBON.',
-              },
-              {
-                phase: 'Research & Development',
-                description:
-                  'We conducted extensive research on emission calculation methodologies, ML models for prediction, and regulatory requirements. Our team reviewed industry standards and worked with domain experts to understand the challenges.',
-              },
-              {
-                phase: 'Technology Development',
-                description:
-                  'We built a comprehensive platform combining React frontend, Python/Django backend, and advanced ML algorithms. The system architecture ensures scalability, reliability, and real-time data processing.',
-              },
-              {
-                phase: 'Smart India Hackathon Submission',
-                description:
-                  'COUNT CARBON was developed as an idea submission for the Smart India Hackathon, aiming to showcase innovation in sustainable industrial practices. Our solution demonstrates technical excellence and social impact.',
-              },
-            ].map((journey, idx) => (
-              <div key={idx} className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-primary/20 text-primary font-bold">
-                    {idx + 1}
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {journey.phase}
-                  </h3>
-                  <p className="text-muted-foreground">{journey.description}</p>
                 </div>
               </div>
             ))}
@@ -194,7 +188,7 @@ export default function AboutPage() {
               },
               {
                 label: 'Category',
-                value: 'Smart India Hackathon (SIH)',
+                value: 'Environmental Management',
               },
               {
                 label: 'Problem Area',
